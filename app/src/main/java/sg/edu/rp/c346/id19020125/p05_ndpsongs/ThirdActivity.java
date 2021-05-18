@@ -39,10 +39,13 @@ public class ThirdActivity extends AppCompatActivity {
         Intent i = getIntent();
         data = (Song) i.getSerializableExtra("data");
 
-        tvSongID.setText(data.getId());
+        tvSongID.setText(String.valueOf(data.getId()));
         etTitle.setText(data.getTitle());
         etSinger.setText(data.getSinger());
-        etYear.setText(data.getYear());
+        etYear.setText(String.valueOf(data.getYear()));
+        int stars = data.getStar();
+
+        ((RadioButton) radioGroup.getChildAt(stars-1)).setChecked(true);
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +65,7 @@ public class ThirdActivity extends AppCompatActivity {
 
                 Intent i = new Intent();
 
-                setResult(RESULT_OK, i);
+                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -76,7 +79,7 @@ public class ThirdActivity extends AppCompatActivity {
 
                 Intent i = new Intent();
 
-                setResult(RESULT_OK, i);
+                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -86,7 +89,7 @@ public class ThirdActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent();
 
-                setResult(RESULT_OK, i);
+                setResult(RESULT_OK);
                 finish();
             }
         });

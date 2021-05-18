@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -106,9 +107,17 @@ public class SecondActivity extends AppCompatActivity {
                 Song target = songs.get(i);
                 Intent a = new Intent(SecondActivity.this, ThirdActivity.class);
                 a.putExtra("data", target);
-                startActivity(a);
+                startActivityForResult(a, 9);
             }
         });
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && resultCode == 9) {
+            btnBack.performClick();
+        }
     }
 }

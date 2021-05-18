@@ -90,6 +90,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 int year = cursor.getInt(3);
                 int stars = cursor.getInt(4);
                 Song song = new Song(title, singers, year, stars);
+                song.setId(id);
                 songs.add(song);
             }while (cursor.moveToNext());
         }

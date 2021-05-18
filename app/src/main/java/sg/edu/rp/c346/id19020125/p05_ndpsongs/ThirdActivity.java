@@ -21,7 +21,6 @@ public class ThirdActivity extends AppCompatActivity {
     RadioButton rb, rb1, rb2, rb3, rb4, rb5;
     Button btnUpdate, btnDelete, btnCancel;
     Song data;
-    ArrayList<Song> songs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,6 @@ public class ThirdActivity extends AppCompatActivity {
             rb5 = findViewById(R.id.radioButton5);
             rb5.setChecked(true);
         }
-
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override

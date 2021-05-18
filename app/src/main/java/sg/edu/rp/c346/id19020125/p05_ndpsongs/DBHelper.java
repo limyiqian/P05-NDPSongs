@@ -112,7 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 int id = cursor.getInt(0);
                 String sTitle = cursor.getString(1);
-                String sSinger = cursor.getString(1);
+                String sSinger = cursor.getString(2);
                 int sYear = cursor.getInt(3);
                 int star = cursor.getInt(4);
                 Song song = new Song(sTitle, sSinger, sYear, star);

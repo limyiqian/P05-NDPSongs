@@ -29,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String createSongTableSql = "CREATE TABLE " + TABLE_SONG + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_TITLE + " TEXT," + COLUMN_SINGER + " TEXT,"
-                + COLUMN_YEAR + "INTEGER," + COLUMN_STAR + "INTEGER ) ";
+                + COLUMN_YEAR + " INTEGER," + COLUMN_STAR + " INTEGER ) ";
         sqLiteDatabase.execSQL(createSongTableSql);
     }
 
@@ -38,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("ALTER TABLE " + TABLE_SONG + " ADD COLUMN song_title TEXT ");
     }
 
-    public int updateNote(Song data){
+    public int updateSong(Song data){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, data.getTitle());
@@ -52,7 +52,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public int deleteNote(int id){
+    public int deleteSong(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         String condition = COLUMN_ID + "= ?";
         String[] args = {String.valueOf(id)};
@@ -61,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public long insertNote (String songContent, String singer,int year, int stars){
+    public long insertSong(String songContent, String singer,int year, int stars){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, songContent);

@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -15,6 +17,7 @@ public class CustomAdapter extends ArrayAdapter<Song> {
     Context context;
     ArrayList<Song> songs;
     int resource;
+    RadioButton rb1, rb2, rb3, rb4, rb5;
 
     public CustomAdapter(Context context, int resource, ArrayList<Song> songs) {
         super(context, resource, songs);
@@ -33,7 +36,18 @@ public class CustomAdapter extends ArrayAdapter<Song> {
         TextView tvSinger = (TextView) rowView.findViewById(R.id.tvSinger);
         RatingBar stars = (RatingBar) rowView.findViewById(R.id.ratingBar);
 
+        rb1 = rowView.findViewById(R.id.radioButton1);
+        rb2 = rowView.findViewById(R.id.radioButton2);
+        rb3 = rowView.findViewById(R.id.radioButton3);
+        rb4 = rowView.findViewById(R.id.radioButton4);
+        rb5 = rowView.findViewById(R.id.radioButton5);
+
         Song curr = songs.get(position);
+        int id = curr.getId();
+        String title = curr.getTitle();
+        String singer = curr.getSinger();
+        int year = curr.getYear();
+        Integer star = curr.getStar();
 
         tvYear.setText(String.valueOf(curr.getYear()));
         tvTitle.setText(curr.getTitle());

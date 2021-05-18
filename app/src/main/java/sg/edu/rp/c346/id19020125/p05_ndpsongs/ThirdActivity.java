@@ -18,7 +18,7 @@ public class ThirdActivity extends AppCompatActivity {
     TextView tvSongID;
     EditText etTitle, etSinger, etYear;
     RadioGroup radioGroup;
-    RadioButton rb, rb1, rb2, rb3, rb4, rb5;
+    RadioButton rbSelected;
     Button btnUpdate, btnDelete, btnCancel;
     Song data;
 
@@ -39,27 +39,10 @@ public class ThirdActivity extends AppCompatActivity {
         Intent i = getIntent();
         data = (Song) i.getSerializableExtra("data");
 
-        int selectedRadioButton = radioGroup.getCheckedRadioButtonId();
-        if (selectedRadioButton == 1) {
-            rb1 = findViewById(R.id.radioButton1);
-            rb1.setChecked(true);
-        }
-        else if (selectedRadioButton == 2) {
-            rb2 = findViewById(R.id.radioButton2);
-            rb2.setChecked(true);
-        }
-        else if (selectedRadioButton == 3) {
-            rb3 = findViewById(R.id.radioButton3);
-            rb3.setChecked(true);
-        }
-        else if (selectedRadioButton == 5) {
-            rb4 = findViewById(R.id.radioButton4);
-            rb4.setChecked(true);
-        }
-        else if (selectedRadioButton == 5) {
-            rb5 = findViewById(R.id.radioButton5);
-            rb5.setChecked(true);
-        }
+        tvSongID.setText(data.getId());
+        etTitle.setText(data.getTitle());
+        etSinger.setText(data.getSinger());
+        etYear.setText(data.getYear());
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +52,9 @@ public class ThirdActivity extends AppCompatActivity {
                 data.setSinger(etSinger.getText().toString());
                 data.setTitle(etTitle.getText().toString());
                 data.setYear(Integer.parseInt(etYear.getText().toString()));
-                RadioButton rbtn = findViewById(radioGroup.getCheckedRadioButtonId());
-                int stars = Integer.parseInt(rbtn.getText().toString());
+                int selectedRadioButton = radioGroup.getCheckedRadioButtonId();
+                rbSelected = findViewById(selectedRadioButton);
+                int stars = Integer.parseInt(rbSelected.getText().toString());
                 data.setStar(stars);
 
                 db.updateSong(data);

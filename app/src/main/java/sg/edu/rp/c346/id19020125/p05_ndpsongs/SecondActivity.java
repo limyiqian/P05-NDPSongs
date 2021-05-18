@@ -1,5 +1,6 @@
 package sg.edu.rp.c346.id19020125.p05_ndpsongs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -96,6 +97,16 @@ public class SecondActivity extends AppCompatActivity {
                 }
 
                 adapter.notifyDataSetChanged();
+            }
+        });
+
+        lvSongs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Song target = songs.get(i);
+                Intent a = new Intent(SecondActivity.this, ThirdActivity.class);
+                a.putExtra("data", target);
+                startActivity(a);
             }
         });
 

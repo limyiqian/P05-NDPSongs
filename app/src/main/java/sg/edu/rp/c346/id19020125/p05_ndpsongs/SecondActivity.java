@@ -51,7 +51,13 @@ public class SecondActivity extends AppCompatActivity {
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, years);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSpinner.setAdapter(spinnerAdapter);
-        
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -76,12 +82,7 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 
         btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +118,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && resultCode == 9) {
-            btnBack.performClick();
+            btnFilter.performClick();
         }
     }
 }

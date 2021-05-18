@@ -75,13 +75,36 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public ArrayList<Song> getAllSongs(String keyword) {
+    public ArrayList<Song> getAllSongs(){
+        ArrayList<Song> songs = new ArrayList<Song>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_SONG;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()){
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String singers = cursor.getString(2);
+                int year = cursor.getInt(3);
+                int stars = cursor.getInt(4);
+                Song song = new Song(title, singers, year, stars);
+                songs.add(song);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return songs;
+    }
+
+    public ArrayList<Song> get5StarSongs() {
         ArrayList<Song> songs = new ArrayList<Song>();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGER, COLUMN_YEAR, COLUMN_STAR};
-        String condition = COLUMN_TITLE + " Like ?";
-        String[] args = { "%" +  keyword + "%"};
+        String condition = COLUMN_STAR + " Like ?";
+        String[] args = { "%" +  5 + "%"};
         Cursor cursor = db.query(TABLE_SONG, columns, condition, args,
                 null, null, null, null);
 
@@ -90,8 +113,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 int id = cursor.getInt(0);
                 String sTitle = cursor.getString(1);
                 String sSinger = cursor.getString(1);
-                int sYear = cursor.getInt(1);
-                int star = cursor.getInt(1);
+                int sYear = cursor.getInt(3);
+                int star = cursor.getInt(4);
                 Song song = new Song(sTitle, sSinger, sYear, star);
                 songs.add(song);
             } while (cursor.moveToNext());

@@ -7,9 +7,25 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/textView5"
+    <Button
+        android:id="@+id/btnBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Back to Home Page"/>
+
+    <ToggleButton
+        android:id="@+id/btnFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/design_default_color_secondary_variant"
+        android:textOff="show all songs with 5 stars"
+        android:textOn="show all songs"/>
+
+    <ListView
+        android:id="@+id/lvSongs"
+        android:layout_width="match_parent"
+        android:divider="@color/design_default_color_primary"
+        android:dividerHeight="5px"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

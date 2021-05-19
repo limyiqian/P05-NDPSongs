@@ -117,7 +117,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK && resultCode == 9) {
+        if (resultCode == RESULT_OK && requestCode == 9) {
             btnFilter.performClick();
         }
     }
